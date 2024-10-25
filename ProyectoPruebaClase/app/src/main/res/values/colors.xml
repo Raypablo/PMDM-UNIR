@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="AzulCielo">#53BBEB</color> //Puedo poner colores por hexadecimal
+    <color name="AzulCielo2">@color/design_default_color_secondary</color> // Podemos poner colores ya definidos con @
 </resources>
