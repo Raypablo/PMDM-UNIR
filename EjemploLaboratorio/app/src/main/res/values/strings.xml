@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EjemploLaboratorio</string>
+    <string name="btn_click">Click_me</string>
+    <string name="TextTest">Mi texto de prueba</string>
+</resources>
