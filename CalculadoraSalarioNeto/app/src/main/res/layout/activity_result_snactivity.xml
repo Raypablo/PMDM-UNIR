@@ -40,7 +40,25 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvResult"
+                android:id="@+id/tvResultBruto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Su salario bruto es:"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvSBrutoResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0€"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultNeto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Su salario neto es:"
@@ -55,6 +73,42 @@
                 android:layout_height="wrap_content"
                 android:text="0€"
                 android:textSize="45sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultIRFP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Su IRPF es:"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvIRPFResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0€"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultDeduc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Su Deducción es:"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvDeducResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0€"
+                android:textSize="35sp"
                 android:textStyle="bold" />
 
 

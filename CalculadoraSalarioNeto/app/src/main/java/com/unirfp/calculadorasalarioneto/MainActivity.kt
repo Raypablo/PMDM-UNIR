@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,6 +35,9 @@ class MainActivity : AppCompatActivity() {
     companion object{
 
         const val SNETO_KEY = "SNETO_RESULT"
+        const val SBRUTO_KEY = "SBRUTO"
+        const val RIRPF_KEY = "RIRPF"
+        const val DEDUC_KEY = "DEDUC"
 
     }
 
@@ -98,18 +100,77 @@ class MainActivity : AppCompatActivity() {
         this.btnCalc.setOnClickListener{
 
             val resultSNeto = calcSueldoNeto()
-            navigateToResult(resultSNeto)
+            val resultIRPF = calcIRPF(resultSNeto)
+            val resultDeducciones = calcDeducciones()
+            val SBruto = editSalarioNeto.text.toString()
+            val resultSBruto = SBruto.toDouble()
+            navigateToResult(resultSNeto, resultIRPF, resultDeducciones, resultSBruto)
 
         }
 
     }
 
-    private fun navigateToResult(resultSNeto: Double) {
+    private fun navigateToResult(
+        resultSNeto: Double,
+        resultIRPF: Double,
+        resultDeducciones: Double,
+        resultSBruto: Double
+    ) {
 
         val intent = Intent(this, ResultSNActivity::class.java)
         intent.putExtra(SNETO_KEY, resultSNeto)
+        intent.putExtra(SBRUTO_KEY, resultSBruto)
+        intent.putExtra(RIRPF_KEY, resultIRPF)
+        intent.putExtra(DEDUC_KEY, resultDeducciones)
 
         this.startActivity(intent)
+
+    }
+
+    private fun calcIRPF(resultSNeto: Double): Double{
+
+        val totalIRPF: Double
+
+        when(resultSNeto) {
+
+            in 0.00 .. 1000.00 -> totalIRPF = 0.0
+            in 1001.00.. 2000.00 -> totalIRPF = 10.5
+            in 2001.00..3000.00 -> totalIRPF = 14.8
+            in 3001.00..4000.00 -> totalIRPF = 21.4
+            else -> totalIRPF = 35.6
+
+        }
+
+        return  totalIRPF
+
+    }
+
+    private fun calcDeducciones(): Double{
+
+        val nHijosStr = tvNHijos.text.toString()
+        val numHijos = nHijosStr.toIntOrNull() ?: 0
+        val gDiscapacidad = spinnerGDiscapacidad.selectedItem.toString()
+        val deducDisc:Double
+        val totalDeduc: Double
+
+        when (gDiscapacidad) {
+
+            "Sin discapacidad" -> deducDisc = 0.0
+            "Menor del 65% (sin asistencia)" -> deducDisc = 600.55
+            "Menor del 65% (con asistencia)" -> deducDisc = 800.95
+            "Mayor o igual al 65%" -> deducDisc = 1200.32
+
+            else -> {
+                Toast.makeText(this, "Por favor, selecciona el Grupo de discapacidad.", Toast.LENGTH_LONG).show()
+                // Salir de la función devolviendo null
+                return 0.0
+            }
+        }
+
+        val deducHijos: Double = numHijos * 455.68
+        totalDeduc = deducHijos + deducDisc
+
+        return totalDeduc
 
     }
 
@@ -120,7 +181,7 @@ class MainActivity : AppCompatActivity() {
         val numGDisc:Double
         val numEcivil:Double
         val numPagas:Int
-        val numSBruto:Int
+        val numSBruto:Double
         val numEdad:Int
         val numHijos:Int
 
@@ -191,11 +252,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        numSBruto = salarioBrutoStr.toInt()
+        numSBruto = salarioBrutoStr.toDouble()
         numEdad = edadStr.toInt()
-        numHijos = nHijosStr.toInt()
+        numHijos = nHijosStr.toIntOrNull() ?: 0
 
-        salarioNeto = (numSBruto/numPagas)*(((((numEdad/20)+numHijos))*numEcivil)*numGDisc)*numGProf
+        salarioNeto = (numSBruto/numPagas)*(((((numEdad/20.55)+numHijos+1))*numEcivil)*numGDisc)*numGProf
         Log.i("salarioNeto","salarioNeto: $salarioNeto")
         return  salarioNeto
 
