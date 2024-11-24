@@ -1,0 +1,57 @@
+<resources>
+
+    <string name="app_name">Calculadora Salario Neto</string>
+    <string name="result_title">SUELDO NETO</string>
+    <string name="error">ERROR</string>
+    <item name="viewSBruto" type="id" />
+    <item name="viewNPagas" type="id" />
+    <item name="viewEdad" type="id" />
+    <item name="viewGProfesional" type="id" />
+    <item name="viewGDiscapacidad" type="id" />
+    <item name="viewECivil" type="id" />
+    <item name="viewNHijos" type="id" />
+    <item name="btnSubNHijos" type="id" />
+    <item name="btnPlusNHijos" type="id" />
+
+
+
+    <string-array name="lista_pagas" type="array">
+        <item>Despliega opciones</item>
+        <item>12</item>
+        <item>14</item>
+    </string-array>
+
+    <string-array name="lista_GProfesional" type="array">
+        <item>Despliega opciones</item>
+        <item>Licenciados</item>
+        <item>Ingenieros técnicos, peritos y ayudantes</item>
+        <item>Jefes administrativos y de taller</item>
+        <item>Ayudantes no titulados</item>
+        <item>Oficiales administrativos</item>
+        <item>Subalternos</item>
+        <item>Auxiliares administrativos</item>
+        <item>Oficiales de 1ª y 2ª</item>
+        <item>Oficiales de 3ª</item>
+        <item>Peones</item>
+        <item>trabajadores menores de 18 años</item>
+        <item>Autónomo</item>
+    </string-array>
+
+    <string-array name="lista_GDiscapacidad" type="array">
+        <item>Despliega opciones</item>
+        <item>Sin discapacidad</item>
+        <item>Menor del 65% (sin asistencia)</item>
+        <item>Menor del 65% (con asistencia)</item>
+        <item>Mayor o igual al 65%</item>
+    </string-array>
+
+    <string-array name="lista_ECivil" type="array">
+        <item>Despliega opciones</item>
+        <item>Casado</item>
+        <item>Divorciado</item>
+        <item>Separado</item>
+        <item>Soltero</item>
+        <item>Viudo</item>
+    </string-array>
+
+</resources>
